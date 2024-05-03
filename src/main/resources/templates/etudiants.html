@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/myStyle.css"
+          th:href="@{/css/myStyle.css}"/>
+    <title>Liste Des etudiants</title>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <nav class="nav bg-success text-white">
+        <a class="nav-link active white-col" th:href="@{index}">Home</a>
+        <a class="nav-link active white-col" th:href="@{formEtudiant}">Ajouter</a>
+    </nav>
+</header>
+
+<div class="container shadow-lg my-3 p-5 rounded-4 colorclass">
+
+    <h3 class="text-center" style="color: #146c43">Liste des étudiants</h3>
+    <div class="container form-control-sm">
+        <form th:action="@{index}" method="get" class="row">
+            <div class="col-auto my-auto">
+                <label class="form-label"><h5>Mot clé :</h5></label>
+            </div>
+            <div class="col-auto my-2">
+                <input class="form-control" name="moCle" th:value="${moCle}" placeholder="chercher par mot clé ...">
+            </div>
+            <div class="col-auto my-2">
+                <button type="submit" class="btn btn-success">Chercher</button>
+            </div>
+        </form>
+    </div>
+    <table class="table table-striped px-1 shadow-sm text-center rounded-4">
+        <thead class="bg-success white-col rounded-4">
+            <tr>
+                <th></th><th>#</th> <th>NOM</th> <th>PRÉNOM</th> <th>EMAIL</th> <th>DATE NAISSANCE</th><th>PHOTO</th><th></th><th></th>
+            </tr>
+        </thead>
+        <tbody class="rounded-4">
+            <tr th:each="e:${pageEtudiants}">
+                <td></td>
+                <td th:text="${e.idEtudiant}"></td>
+                <td th:text="${e.nom.toUpperCase()}"></td>
+                <td th:text="${e.prenom}"></td>
+                <td th:text="${e.email}"></td>
+                <td th:text="${e.dateNaissance}"></td>
+                <td><img th:src="@{getPhoto(id=(${e.idEtudiant}))}" width="70" height="auto"/></td>
+                <td><a onclick="return confirm('Supprimer ?')" th:href="@{delete(id=${e.idEtudiant})}" class="text-danger">Delete</a></td>
+                <td><a th:href="@{edit(id=${e.idEtudiant})}" class="text-success">Edit</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+<div class="container">
+    <ul class="nav nav-pills">
+         <li th:each="p:${page}">
+             <a th:text="${p+1}" th:href="@{index(page=${p}, moCle=${moCle})}" th:class="${p==pageCourant}?'btn btn-success':'btn btn-outline-success mx-1'"></a>
+         </li>
+    </ul>
+</div>
+</div>
+</body>
+</html>
