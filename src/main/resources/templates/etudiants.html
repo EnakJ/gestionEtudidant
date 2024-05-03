@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="layout">
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"
@@ -9,13 +11,7 @@
     <title>Liste Des etudiants</title>
 </head>
 <body>
-<!-- Header -->
-<header>
-    <nav class="nav bg-success text-white">
-        <a class="nav-link active white-col" th:href="@{index}">Home</a>
-        <a class="nav-link active white-col" th:href="@{formEtudiant}">Ajouter</a>
-    </nav>
-</header>
+<div layout:fragment="content">
 
 <div class="container shadow-lg my-3 p-5 rounded-4 colorclass">
 
@@ -60,6 +56,7 @@
              <a th:text="${p+1}" th:href="@{index(page=${p}, moCle=${moCle})}" th:class="${p==pageCourant}?'btn btn-success':'btn btn-outline-success mx-1'"></a>
          </li>
     </ul>
+</div>
 </div>
 </div>
 </body>

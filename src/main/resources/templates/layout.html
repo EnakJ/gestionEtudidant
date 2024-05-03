@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <script src="/static/js/bootstrap.bundle.js"
+        th:src="@{/js/bootstrap.bundle.js}">
+    </script>
+    <link rel="stylesheet" type="text/css" href="/static/css/myStyle.css"
+          th:href="@{/css/myStyle.css}"/>
+    <title>Liste Des etudiants</title>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <nav class="navbar navbar-expand-sm bg-success navbar-dark">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{index}">Home</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Etudiant</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{index}">Liste</a></li>
+                        <li><a class="dropdown-item" th:href="@{formEtudiant}">Ajouter</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<!--    <nav class="nav bg-success text-white">-->
+<!--        <a class="nav-link active white-col" th:href="@{index}">Home</a>-->
+<!--        <a class="nav-link active white-col" th:href="@{formEtudiant}">Ajouter</a>-->
+<!--    </nav>-->
+</header>
+<section layout:fragment="content">
+
+</section>
+</body>
+</html>
